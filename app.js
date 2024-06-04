@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const db = require("./models");
+const Restaurant = db.Restaurant;
 
 const port = 3000;
 
@@ -10,7 +12,11 @@ app.get("/", (req, res) => {
 
 // 顯示餐廳全部清單頁面
 app.get("/restaurants", (req, res) => {
-  res.send("Welcome to the restaurant list");
+  return Restaurant.findAll()
+    .then((restaurants) => res.send({ restaurants }))
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 // 顯示單一餐廳的頁面
@@ -34,15 +40,14 @@ app.get("/restaurants/:id/edit", (req, res) => {
 });
 
 // 更新、編輯餐廳(會修改，使用 PUT)
-app.put('/restaurant/:id',(req,res)=>{
-  res.send('update!!')
-})
+app.put("/restaurant/:id", (req, res) => {
+  res.send("update!!");
+});
 
 // 刪除餐廳(會修改)
-app.delete('restaurant/:id',(req,res)=>{
-  res.send('delete')
-})
-
+app.delete("restaurant/:id", (req, res) => {
+  res.send("delete");
+});
 
 app.listen(port, () => {
   console.log(`server is running at http://localhost:${port} `);
