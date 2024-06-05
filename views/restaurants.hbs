@@ -1,0 +1,45 @@
+{{!-- search bar --}}
+    <div class="container search-bar">
+      <div class="search-bar-outer">
+        <div class="search-bar-inner">
+          <form action="/search" >
+            <h4 class="mb-2">尋找餐廳：</h4>
+            <div class="input-group">
+              <input
+                type="text"
+                name="keyword"
+                class="form-control"
+                placeholder="輸入餐廳、分類"
+                aria-label="Restaurant Name..."
+                value=""
+                aria-describedby="search-button"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-major"
+                  type="submit"
+                  id="search-button"
+                ><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Restaurant List --}}  
+    <div class="restaurant-list">
+    {{#each restaurants}}
+      <div class="restaurant">
+        <h2>{{name}}</h2>
+        <p>{{name_en}}</p>
+        <p>{{category}}</p>
+        <img src="{{image}}" alt="{{name}}">
+        <p>{{location}}</p>
+        <p>{{phone}}</p>
+        <a href="{{google_map}}" target="_blank">Google Map</a>
+        <p>Rating: {{rating}}</p>
+        <p>{{description}}</p>
+      </div>
+    {{/each}}
+  </div>

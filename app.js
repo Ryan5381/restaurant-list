@@ -4,6 +4,7 @@ const app = express();
 const {engine} = require('express-handlebars');
 
 const db = require("./models");
+const { raw } = require("mysql2");
 const Restaurant = db.Restaurant;
 
 const port = 3000;
@@ -11,6 +12,8 @@ const port = 3000;
 app.engine('.hbs',engine({extname:'.hbs'}))
 app.set('view engine', '.hbs');
 app.set('views', './views')
+// 設定靜態文件夾
+app.use(express.static('public'));
 
 // 根目錄
 app.get("/", (req, res) => {
@@ -19,8 +22,24 @@ app.get("/", (req, res) => {
 
 // 顯示餐廳全部清單頁面
 app.get("/restaurants", (req, res) => {
-  return Restaurant.findAll()
-    .then((restaurants) => res.send({ restaurants }))
+  return Restaurant.findAll({
+    attributes: [
+      "name",
+      "name_en",
+      "category",
+      "image",
+      "location",
+      "phone",
+      "google_map",
+      "rating",
+      "description",
+    ],
+    raw:true
+  })
+    .then((restaurants) =>{
+      res.render('index', {restaurants})
+    } )
+      
     .catch((err) => {
       console.log(err);
     });
