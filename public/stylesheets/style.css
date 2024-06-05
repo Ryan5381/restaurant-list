@@ -10,12 +10,82 @@ header {
   color: #226089;
 }
 
+.create {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  padding: 0.3rem;
+  border: 0.13rem solid #2cbee2;
+  border-radius: 10px;
+  color: black;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+
+.form-dev {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.1rem solid #aaaaaa;
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+.form-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-info label {
+  width: 120px;
+  margin-right: 10px;
+  text-align: left;
+}
+
+.form-info input,
+.form-info select,
+.form-info textarea {
+  width: 320px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
+.header {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.5rem solid white;
+  padding: 1rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.create:hover {
+  color: darkslategrey;
+  background-color: #71fe30;
+}
+
 .banner {
   position: relative;
   z-index: -1;
   margin: -5px;
-  height: 360px;
-  background: #dddddd center center url('https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5720/restaurants-list-cover.jpg');
+  height: 300px;
+  background: #dddddd center center
+    url("https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5720/restaurants-list-cover.jpg");
   background-size: cover;
   filter: blur(3px);
 }
@@ -40,6 +110,21 @@ header {
   font-size: 0.8rem;
 }
 
+.btn-form{
+  display: flex;
+   margin-top: 3rem;
+  a{
+    width: 90px;
+    height: 44px;
+    line-height: 44px;
+    border-radius: 10%;
+    text-align: center;
+    text-decoration: none;
+    background-color: red;
+    color: #ffffff;
+  }
+}
+
 .btn-major {
   background-color: #9b4b4b;
   color: white;
@@ -54,14 +139,14 @@ header {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-.card img{
+.card img {
   height: 180px;
 }
 
-.card-title{
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+.card-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .restaurant-category {
@@ -79,23 +164,19 @@ header {
 }
 
 @media screen and (max-width: 992px) {
-  
-  .card img{
+  .card img {
     height: 115px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  
   .restaurant-show-title {
     font-size: 2rem;
   }
 }
 
 @media screen and (max-width: 575px) {
-  
-  .card img{
+  .card img {
     height: auto;
   }
-  
 }

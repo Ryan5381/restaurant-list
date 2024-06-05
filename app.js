@@ -14,6 +14,7 @@ app.set('view engine', '.hbs');
 app.set('views', './views')
 // 設定靜態文件夾
 app.use(express.static('public'));
+app.use(express.urlencoded({extended:true}))
 
 // 根目錄
 app.get("/", (req, res) => {
@@ -45,19 +46,46 @@ app.get("/restaurants", (req, res) => {
     });
 });
 
+// 顯示新增餐廳的頁面(不做修改)
+app.get("/restaurants/new", (req, res) => {
+  res.render("new");
+
+});
+
 // 顯示單一餐廳的頁面
 app.get("/restaurants/:id", (req, res) => {
   res.send("Welcome to the restaurant - detail");
 });
 
-// 顯示新增餐廳的頁面(不做修改)
-app.get("/restaurants/new", (req, res) => {
-  res.send("This is the page for adding new restaurants");
-});
 
-// 新增餐廳(會修改，使用 POST)
-app.post("/restaurants/", (req, res) => {
-  res.send("add restaurant");
+
+// 新增餐廳(會修改原本的restaurants頁面，使用 POST)
+app.post("/restaurants", (req, res) => {
+  const {
+    name,
+    name_en,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description,
+  } = req.body;
+
+   return Restaurant.create({
+     name,
+     name_en,
+     category,
+     image,
+     location,
+     phone,
+     google_map,
+     rating,
+     description,
+   })
+    .then(()=> res.redirect('/restaurants'))
+    .catch((err)=>console.log(err))
 });
 
 // 顯示編輯餐廳頁面(不做修改)
