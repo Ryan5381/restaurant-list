@@ -1,13 +1,20 @@
 const express = require("express");
 const app = express();
+
+const {engine} = require('express-handlebars');
+
 const db = require("./models");
 const Restaurant = db.Restaurant;
 
 const port = 3000;
 
+app.engine('.hbs',engine({extname:'.hbs'}))
+app.set('view engine', '.hbs');
+app.set('views', './views')
+
 // 根目錄
 app.get("/", (req, res) => {
-  res.send("hello world");
+  res.render("index");
 });
 
 // 顯示餐廳全部清單頁面
