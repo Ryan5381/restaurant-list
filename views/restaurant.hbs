@@ -4,23 +4,51 @@
 
 <div class="outside-contain">
   <div class="contain-img">
-  <img src={{restaurant.image}} alt="餐廳照片">
+    <img src={{restaurant.image}} alt="餐廳照片" />
   </div>
+
   <div class="contain-p">
     <div class="contain-p-span">
-      <span>電話：</span><p>{{restaurant.phone}}</p>
+      <span>餐廳：</span><p>{{restaurant.name}}</p>
     </div>
-      
+
+    <div class="contain-p">
+      <div class="contain-p-span">
+        <span>電話：</span><p>{{restaurant.phone}}</p>
+      </div>
+
       <div class="contain-p-span">
         <span>地址：</span><p>{{restaurant.location}}</p>
       </div>
       <div class="contain-p-span">
-      <span>Google Map：</span><p><a href="{{restaurant.google_map}}">{{restaurant.google_map}}</a></p>
+        <span>Google Map：</span><p><a
+            href="{{restaurant.google_map}}"
+          >{{restaurant.google_map}}</a></p>
       </div>
       <div class="contain-p-span">
-      <span>簡介：</span><p>{{restaurant.description}}</p>
+        <span>簡介：</span><p>{{restaurant.description}}</p>
       </div>
+    </div>
   </div>
+
 </div>
 
+<div
+  calss="btn-details"
+  style="display: flex; justify-content: center; margin-top: 2rem;"
+>
+  <div class="btn-detail">
+    <a href="/restaurants/{{restaurant.id}}/edit" style="color: #154799" title="編輯"><i
+        class="fa-regular fa-pen-to-square fa-2xl"
+        style="color: #154799; padding:0.2rem"
+      ></i>Edit</a>
+  </div>
+  <div class="btn-detail" style="margin-left: 2rem; margin-bottom: 2rem">
+    <a href="/restaurants" style="color: #d11f1f;" title="返回">
+      <i
+        class="fa-solid fa-share-from-square fa-2xl"
+        style="color: #d11f1f; padding:0.2rem;"
+        
+      ></i>Back</a>
+  </div>
 </div>

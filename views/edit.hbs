@@ -1,0 +1,150 @@
+<div id="form-edit">
+  <form action="/restaurants/{{restaurant.id}}?_method=PUT" method="post">
+  
+    <div class="row mb-3">
+      <label for="name-ch" class="col-sm-2 col-form-label">編輯中文名稱</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="name-ch"
+          aria-describedby="nameEdit"
+          placeholder="please input"
+          value="{{restaurant.name}}"
+          name="chnameEdit"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="name-en" class="col-sm-2 col-form-label">編輯英文名稱</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="name-en"
+          aria-describedby="nameEdit"
+          placeholder="please input"
+          value="{{restaurant.name_en}}"
+          name="ennameEdit"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="category" class="col-sm-2 col-form-label">編輯類別</label>
+      <div class="col-sm-10">
+        <select name="categoryEdit" id="category" class="form-select">
+          <option value="" disabled selected>請選擇</option>
+          <option value="咖啡廳">咖啡廳</option>
+          <option value="酒吧">酒吧</option>
+          <option value="中式料理">中式料理</option>
+          <option value="義式料理">義式料理</option>
+          <option value="中東料理">中東料理</option>
+          <option value="日式料理">日式料理</option>
+          <option value="美式料理">美式料理</option>
+          <option value="泰式料理">泰式料理</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="img" class="col-sm-2 col-form-label">編輯相片網址</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="img"
+          aria-describedby="imgUrlEdit"
+          placeholder="please input"
+          value="{{restaurant.image}}"
+          name="imgEdit"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="phone" class="col-sm-2 col-form-label">編輯電話號碼</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="phone"
+          aria-describedby="phoneEdit"
+          placeholder="please input"
+          value="{{restaurant.phone}}"
+          name="phoneEdit"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="location" class="col-sm-2 col-form-label">編輯地址</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="location"
+          aria-describedby="ratingEdit"
+          placeholder="please input"
+          value="{{restaurant.location}}"
+          name="locationEdit"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="googlemap" class="col-sm-2 col-form-label">編輯google map</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="googlemap"
+          aria-describedby="googlemapEdit"
+          placeholder="please input"
+          value="{{restaurant.google_map}}"
+          name="mapEdit"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="rating" class="col-sm-2 col-form-label">編輯熱門度</label>
+      <div class="col-sm-10">
+        <input
+          type="number"
+          class="form-control"
+          id="rating"
+          aria-describedby="ratingEdit"
+          placeholder="please input"
+          value="{{restaurant.rating}}"
+          name="ratingEdit"
+          max="5"
+          min="0"
+          step="0.1"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="description" class="col-sm-2 col-form-label">編輯描述</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          aria-describedby="ratingEdit"
+          placeholder="please input"
+          value="{{restaurant.description}}"
+          name="descriptionEdit"
+        />
+      </div>
+    </div>
+
+    <div class="btn-form-edit col-sm-6">
+      <button type="submit" >Save</button>
+      <a href="/restaurants">Back</a>
+    </div>
+
+  </form>
+</div>

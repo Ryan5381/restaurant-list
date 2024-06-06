@@ -10,6 +10,19 @@ header {
   color: #226089;
 }
 
+#form-edit {
+  margin-left: 20%;
+  margin-top: 2%;
+}
+
+#form-edit input {
+  width: 70%;
+}
+
+#form-edit select {
+  width: 70%;
+}
+
 .create {
   position: absolute;
   right: 15px;
@@ -150,6 +163,28 @@ button {
   margin-top: 3rem;
   a {
     width: 90px;
+    height: 44px;
+    line-height: 44px;
+    border-radius: 10%;
+    text-align: center;
+    text-decoration: none;
+    background-color: red;
+    color: #ffffff;
+  }
+}
+
+.btn-detail {
+  a {
+    text-decoration: none;
+    color: #000000;
+  }
+}
+
+.btn-form-edit {
+  display: flex;
+  margin-top: 3rem;
+  a {
+    width: 75px;
     height: 44px;
     line-height: 44px;
     border-radius: 10%;
