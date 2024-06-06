@@ -2,10 +2,10 @@
 <a href="/restaurants/new" class="create">CREATE</a>
 
 {{! search bar }}
-<div class="container search-bar">
-  <div class="search-bar-outer">
-    <div class="search-bar-inner">
-      <form action="/search">
+<form action="/restaurants/search" method="get">
+  <div class="container search-bar">
+    <div class="search-bar-outer">
+      <div class="search-bar-inner">
         <h4 class="mb-2">尋找餐廳：</h4>
         <div class="input-group">
           <input
@@ -23,10 +23,10 @@
               ></i></button>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
-</div>
+</form>
 
 {{! Restaurant List }}
 <div class="container mt-5">
@@ -58,7 +58,7 @@
                       ></i></a>
 
                     <form
-                      action="/restaurants/{{restaurant.id}}?_method=DELETE"
+                      action="/restaurants/{{id}}?_method=DELETE"
                       method="post"
                     >
                       <button

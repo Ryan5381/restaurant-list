@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-
 const { engine } = require("express-handlebars");
 const methodOverride = require("method-override");
+const path = require("path");
 
 const db = require("./models");
 const { raw } = require("mysql2");
@@ -10,7 +10,15 @@ const Restaurant = db.Restaurant;
 
 const port = 3000;
 
-app.engine(".hbs", engine({ extname: ".hbs" }));
+app.engine(
+  ".hbs",
+  engine({
+    extname: ".hbs",
+    defaultLayout: "main",
+    layoutsDir: path.join(__dirname, "views/layouts"),
+    partialsDir: path.join(__dirname, "views/partials"),
+  })
+);
 app.set("view engine", ".hbs");
 app.set("views", "./views");
 
@@ -21,8 +29,9 @@ app.use(methodOverride("_method"));
 
 // 根目錄
 app.get("/", (req, res) => {
-  res.render("index");
+  res.redirect("/restaurants");
 });
+
 
 // 顯示餐廳全部清單頁面
 app.get("/restaurants", (req, res) => {
@@ -49,12 +58,40 @@ app.get("/restaurants", (req, res) => {
     });
 });
 
-// 顯示新增餐廳的頁面(不做修改)
-app.get("/restaurants/new", (req, res) => {
-  res.render("new");
+
+
+// 顯示搜尋餐廳的頁面
+app.get("/restaurants/search", (req, res) => {
+  const keyword = req.query.keyword?.trim();
+
+  if (!keyword) {
+    // 如果沒有關鍵字，直接顯示所有餐廳
+    return Restaurant.findAll({ raw: true })
+      .then((restaurants) => res.render("search", { restaurants }))
+      .catch((err) => console.log(err));
+  }
+
+  // 透過關鍵字找出餐廳陣列中符合的餐廳
+  Restaurant.findAll({ raw: true })
+    .then((restaurants) => {
+      const matchedRestaurants = restaurants.filter((info) =>
+        Object.values(info).some((property) => {
+          // 只比對字串屬性
+          if (typeof property === "string") {
+            return property.toLowerCase().includes(keyword.toLowerCase());
+          }
+          return false;
+        })
+      );
+      console.log(matchedRestaurants); // 調試輸出
+      res.render("search", { restaurants: matchedRestaurants, keyword });
+    })
+    .catch((err) => console.log(err));
 });
 
 // 顯示單一餐廳的頁面
+// 動態路由要設置在靜態路由後面
+// 否則可能會出現渲染到錯誤路由的問題
 app.get("/restaurants/:id", (req, res) => {
   const id = req.params.id;
   return Restaurant.findByPk(id, {
@@ -158,5 +195,5 @@ app.delete("/restaurants/:id", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`server is running at http://localhost:${port} `);
+  console.log(`server is running at http://localhost:${port}`);
 });
