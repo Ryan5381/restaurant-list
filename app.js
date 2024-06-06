@@ -25,6 +25,7 @@ app.get("/", (req, res) => {
 app.get("/restaurants", (req, res) => {
   return Restaurant.findAll({
     attributes: [
+      "id",
       "name",
       "name_en",
       "category",
@@ -54,7 +55,23 @@ app.get("/restaurants/new", (req, res) => {
 
 // 顯示單一餐廳的頁面
 app.get("/restaurants/:id", (req, res) => {
-  res.send("Welcome to the restaurant - detail");
+  const id = req.params.id
+  console.log(id)
+  return Restaurant.findByPk(id, {
+    attributes: [
+      "name",
+      "name_en",
+      "location",
+      "image",
+      "category",
+      "phone",
+      "description",
+      "google_map",
+    ],
+    raw: true,
+  })
+    .then((restaurant) => res.render("restaurant", { restaurant }))
+    .catch((err) => console.log(err));
 });
 
 

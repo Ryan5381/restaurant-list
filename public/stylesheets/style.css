@@ -65,18 +65,53 @@ button {
 
 .header {
   position: absolute;
-  top: 35%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: 0.5rem solid white;
   padding: 1rem;
-  color: #ffffff;
+  color: #000000;
   text-align: center;
 }
 
+.outside-contain {
+  display: flex;
+  justify-content: center;
+}
+
+.contain-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.2rem solid #999999;
+  margin: 1rem;
+  padding: 1rem;
+  width: 500px;
+  img {
+    width: 100%;
+  }
+}
+
+.contain-p-span {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem;
+  margin-top: 2rem;
+}
+
+.contain-p-span span {
+  margin-left: 0.8rem;
+  width: 120px;
+  font-weight: bold;
+}
+
+.contain-p-span p {
+  width: 300px;
+}
+
 .create:hover {
-  color: darkslategrey;
-  background-color: #71fe30;
+  color: #ffffff;
+  background-color: #2cbee2;
 }
 
 .banner {
@@ -110,10 +145,10 @@ button {
   font-size: 0.8rem;
 }
 
-.btn-form{
+.btn-form {
   display: flex;
-   margin-top: 3rem;
-  a{
+  margin-top: 3rem;
+  a {
     width: 90px;
     height: 44px;
     line-height: 44px;
@@ -137,6 +172,7 @@ button {
 
 .card {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
 }
 
 .card img {
@@ -161,6 +197,25 @@ button {
   text-align: center;
   font-size: 3rem;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.crud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.icons {
+  display: flex;
+  gap: 0.8rem;
+  /* icon間距 */
+}
+
+.icons:hover {
+  cursor: pointer;
+}
+.text-secondary {
+  color: grey;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 992px) {

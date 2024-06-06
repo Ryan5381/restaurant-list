@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   Restaurant.init(
     {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -25,30 +30,30 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-       image: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  location: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  phone: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  google_map: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  rating: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
-  },
-  description: {
-    type: DataTypes.TEXT,
-    allowNull: false,
-  },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      location: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      google_map: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      rating: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
     },
     {
       sequelize,

@@ -1,0 +1,26 @@
+<div class="header">
+  <h1>{{restaurant.name_en}}</h1>
+</div>
+
+<div class="outside-contain">
+  <div class="contain-img">
+  <img src={{restaurant.image}} alt="餐廳照片">
+  </div>
+  <div class="contain-p">
+    <div class="contain-p-span">
+      <span>電話：</span><p>{{restaurant.phone}}</p>
+    </div>
+      
+      <div class="contain-p-span">
+        <span>地址：</span><p>{{restaurant.location}}</p>
+      </div>
+      <div class="contain-p-span">
+      <span>Google Map：</span><p><a href="{{restaurant.google_map}}">{{restaurant.google_map}}</a></p>
+      </div>
+      <div class="contain-p-span">
+      <span>簡介：</span><p>{{restaurant.description}}</p>
+      </div>
+  </div>
+</div>
+
+</div>
