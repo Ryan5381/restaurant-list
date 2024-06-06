@@ -44,11 +44,22 @@
       ></i>Edit</a>
   </div>
   <div class="btn-detail" style="margin-left: 2rem; margin-bottom: 2rem">
-    <a href="/restaurants" style="color: #d11f1f;" title="返回">
+    <a href="/restaurants" style="color: #0f664c;" title="返回">
       <i
         class="fa-solid fa-share-from-square fa-2xl"
-        style="color: #d11f1f; padding:0.2rem;"
-        
+        style="color: #0f664c; padding:0.2rem;"
       ></i>Back</a>
   </div>
+
+  <form action="/restaurants/{{restaurant.id}}?_method=DELETE" method="post">
+    <button type="submit" class="btn btn-link p-0" title="刪除" style="margin-left: 2rem; text-decoration: none;
+    color: #c91313;"> <i class="fa-solid fa-trash fa-2xl" style="color: #c91313;"></i>Delete</button>
+  </form>
+
+
+  </div>
+
+
+
+ 
 </div>

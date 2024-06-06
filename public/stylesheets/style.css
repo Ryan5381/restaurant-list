@@ -127,6 +127,14 @@ button {
   background-color: #2cbee2;
 }
 
+.btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: inherit;
+}
+
 .banner {
   position: relative;
   z-index: -1;

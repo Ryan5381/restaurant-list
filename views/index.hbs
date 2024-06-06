@@ -30,38 +30,57 @@
 
 {{! Restaurant List }}
 <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-10">
-        {{!-- 一次設定好不同螢幕可以顯示多少個 card --}}
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-          {{#each restaurants}}
-            <div class="col">
-              <div class="card h-100">
-                <img class="card-img-top" src="{{image}}" alt="{{category}}" />
-                <div class="card-body p-3">
-                  <h6 class="card-title mb-1">{{name}}</h6>
-                  <div class="restaurant-category mb-1">
-                    <i class="fas fa-utensils pr-2"></i>&nbsp;&nbsp;{{category}}
-                  </div>
-                  <div class="crud">
-                    <span class="badge rounded-pill bg-danger font-weight-normal">
-                      {{rating}}
-                      <i class="fas fa-star fa-xs"></i>
-                    </span>
-                    <div class="icons">
-                      <a href="/restaurants/{{id}}" class="text-secondary"><i class="fa-solid fa-eye fa-xl" title="詳細資料"></i></a><a href="/restaurants/{{id}}/edit"><i class="fa-regular fa-pen-to-square fa-xl" title="編輯"></i></a>
-                      
-                      <i class="fa-solid fa-trash fa-xl" title="刪除"
-                      style="color: #c91313;"></i>
-                    </div>
+  <div class="row justify-content-center" style="margin-bottom: 2rem;">
+    <div class="col-md-10">
+      {{! 一次設定好不同螢幕可以顯示多少個 card }}
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        {{#each restaurants}}
+          <div class="col">
+            <div class="card h-100">
+              <img class="card-img-top" src="{{image}}" alt="{{category}}" />
+              <div class="card-body p-3">
+                <h6 class="card-title mb-1">{{name}}</h6>
+                <div class="restaurant-category mb-1">
+                  <i class="fas fa-utensils pr-2"></i>&nbsp;&nbsp;{{category}}
+                </div>
+                <div class="crud">
+                  <span class="badge rounded-pill bg-danger font-weight-normal">
+                    {{rating}}
+                    <i class="fas fa-star fa-xs"></i>
+                  </span>
+                  <div class="icons">
+                    <a href="/restaurants/{{id}}" class="text-secondary"><i
+                        class="fa-solid fa-eye fa-xl"
+                        title="詳細資料"
+                      ></i></a><a href="/restaurants/{{id}}/edit"><i
+                        class="fa-regular fa-pen-to-square fa-xl"
+                        title="編輯"
+                      ></i></a>
+
+                    <form
+                      action="/restaurants/{{restaurant.id}}?_method=DELETE"
+                      method="post"
+                    >
+                      <button
+                        type="submit"
+                        class="btn btn-link p-0"
+                        title="刪除"
+                      >
+                        <i
+                          class="fa-solid fa-trash fa-xl"
+                          style="color: #c91313;"
+                        ></i></button>
+                    </form>
+
                   </div>
                 </div>
               </div>
             </div>
-          {{/each}}
-        </div>
+          </div>
+        {{/each}}
       </div>
     </div>
   </div>
+</div>
 
 {{!-- 在 {{#each restaurants}} 中，each 幫助器迴圈遍歷 restaurants 數組，並且每次迴圈內部的上下文都是數組中的一個元素。這樣，你可以直接使用 {{name}}、{{category}}、{{rating}} 等來訪問元素的屬性，而不需透過this或restaurant訪問 --}}
