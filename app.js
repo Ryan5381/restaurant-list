@@ -27,11 +27,15 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-// 根目錄
+// 根目錄，重新導向至首頁
 app.get("/", (req, res) => {
-  res.redirect("/restaurants");
+  res.redirect('restaurants');
 });
 
+// 顯示新增餐廳的頁面(不做修改)
+app.get("/restaurants/new", (req, res) => {
+  res.render("new");
+});
 
 // 顯示餐廳全部清單頁面
 app.get("/restaurants", (req, res) => {
@@ -58,16 +62,14 @@ app.get("/restaurants", (req, res) => {
     });
 });
 
-
-
 // 顯示搜尋餐廳的頁面
 app.get("/restaurants/search", (req, res) => {
   const keyword = req.query.keyword?.trim();
 
   if (!keyword) {
-    // 如果沒有關鍵字，直接顯示所有餐廳
+    // 如果沒有關鍵字，直接導向至首頁，顯示所有餐廳
     return Restaurant.findAll({ raw: true })
-      .then((restaurants) => res.render("search", { restaurants }))
+      .then((restaurants) => res.render("index", { restaurants }))
       .catch((err) => console.log(err));
   }
 
@@ -140,6 +142,8 @@ app.post("/restaurants", (req, res) => {
     .then(() => res.redirect("/restaurants"))
     .catch((err) => console.log(err));
 });
+
+
 
 // 顯示編輯餐廳頁面(不做修改)
 app.get("/restaurants/:id/edit", (req, res) => {
