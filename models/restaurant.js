@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      nameen: {
+      name_en: {
         type: DataTypes.STRING,
         allowNull: true
       },
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      googleMap: {
+      google_map: {
         type: DataTypes.STRING,
         allowNull: true
       },
