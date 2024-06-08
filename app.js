@@ -3,7 +3,6 @@ const app = express()
 const { engine } = require('express-handlebars')
 const methodOverride = require('method-override')
 const path = require('path')
-
 const db = require('./models')
 // const { raw } = require('mysql2')
 const Restaurant = db.Restaurant
@@ -43,7 +42,7 @@ app.get('/restaurants', (req, res) => {
     attributes: [
       'id',
       'name',
-      'nameen',
+      'name_en',
       'category',
       'image',
       'location',
@@ -100,7 +99,7 @@ app.get('/restaurants/:id', (req, res) => {
     attributes: [
       'id',
       'name',
-      'nameen',
+      'name_en',
       'location',
       'image',
       'category',
@@ -118,24 +117,24 @@ app.get('/restaurants/:id', (req, res) => {
 app.post('/restaurants', (req, res) => {
   const {
     name,
-    nameen,
+    name_en,
     category,
     image,
     location,
     phone,
-    googleMap,
+    google_map,
     rating,
     description
   } = req.body
 
   return Restaurant.create({
     name,
-    nameen,
+    name_en,
     category,
     image,
     location,
     phone,
-    googleMap,
+    google_map,
     rating,
     description
   })
@@ -150,7 +149,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     attributes: [
       'id', // 確保ID也被查詢出來
       'name',
-      'nameen',
+      'name_en',
       'category',
       'image',
       'location',
@@ -173,7 +172,7 @@ app.put('/restaurants/:id', (req, res) => {
   return Restaurant.update(
     {
       name: body.chnameEdit,
-      nameen: body.ennameEdit,
+      name_en: body.ennameEdit,
       category: body.categoryEdit,
       image: body.imgEdit,
       location: body.locationEdit,
