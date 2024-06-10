@@ -67,13 +67,16 @@
       <label for="phone" class="col-sm-2 col-form-label">編輯電話號碼</label>
       <div class="col-sm-10">
         <input
-          type="text"
+          type="tel"
           class="form-control"
           id="phone"
           aria-describedby="phoneEdit"
-          placeholder="please input"
           value="{{restaurant.phone}}"
           name="phoneEdit"
+          placeholder="請輸入餐廳電話(8-10碼)" 
+          maxlength="12"
+          minlength="7" required
+          oninput="this.value = this.value.replace(/[^0-9]/g, '');"
         />
       </div>
     </div>

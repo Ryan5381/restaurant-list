@@ -3,7 +3,7 @@
 </div>
 
 <div class="form-dev">
-  <form action="/restaurants" method="post">
+  {{!-- <form action="/restaurants" method="post">
 
     <div class="form-info">
       <label for="name">餐廳名字<span style="color: red;">*(必填)</label>
@@ -65,6 +65,88 @@
       <a href="/restaurants">Back</a>
     </div>
 
-  </form>
+  </form> --}}
+{{!-- </div> --}}
 
-</div>
+
+
+<form  action="/restaurants" method="post">
+  <div class="row mb-3 form-info">
+    <label for="name" class="col-sm-2 col-form-label">餐廳名字 <span style="color: red;">*(必填)</span></label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+  </div>
+  <div class="row mb-3 form-info">
+    <label for="name-en" class="col-sm-2 col-form-label">餐廳英文名字</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="name-en"  name="name_en">
+    </div>
+  </div>
+
+  <div class="row mb-3 form-info">
+    <label for="res-category" class="col-sm-2 col-form-label">餐廳類別<span style="color: red;">*(必填)</span></label>
+    <div class="col-sm-10">
+      <select name="category" id="res-category" class="form-select">
+        <option value="" disabled selected>請選擇</option>
+        <option value="咖啡廳">咖啡廳</option>
+        <option value="酒吧">酒吧</option>
+        <option value="中式料理">中式料理</option>
+        <option value="義式料理">義式料理</option>
+        <option value="中東料理">中東料理</option>
+        <option value="日式料理">日式料理</option>
+        <option value="美式料理">美式料理</option>
+        <option value="泰式料理">泰式料理</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row mb-3 form-info">
+    <label for="name-img" class="col-sm-2 col-form-label">餐廳圖片</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="name-img"  name="image" placeholder="請輸入圖片網址" >
+    </div>
+  </div>
+
+  <div class="row mb-3 form-info">
+    <label for="res-location" class="col-sm-2 col-form-label">餐廳地址<span style="color: red;">*(必填)</span></label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="res-location"  name="location" placeholder="請輸入餐廳地址" required>
+    </div>
+  </div>
+
+  <div class="row mb-3 form-info">
+    <label for="res-phone" class="col-sm-2 col-form-label">餐廳電話<span style="color: red;">*(必填)</span></label>
+    <div class="col-sm-10">
+      <input type="tel" class="form-control" id="res-phone" name="phone" placeholder="請輸入餐廳電話(8-10碼)" pattern="[0-9]{8,10}" required />
+    </div>
+  </div>
+
+  <div class="row mb-3 form-info">
+    <label for="res-google-map" class="col-sm-2 col-form-label">googlemap<span style="color: red;">*(必填)</span></label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="res-google-map" name="google_map" placeholder="請輸入Google Map網址" />
+    </div>
+  </div>
+
+  <div class="row mb-3 form-info">
+    <label for="res-rating" class="col-sm-2 col-form-label">餐廳熱門度<span style="color: red;">*(必填)</span></label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="res-rating"  name="rating" max="5" min="0" step="0.1" required />
+    </div>
+  </div>
+
+  <div class="row mb-3 form-info">
+    <label for="res-description" class="col-sm-2 col-form-label">餐廳描述<span style="color: red;">*(必填)</span></label>
+    <div class="col-sm-10">
+      <textarea name="description" id="res-description" rows="5" required></textarea>
+    </div>
+  </div>
+  {{!-- <button type="submit" class="btn btn-primary">Sign in</button> --}}
+      <div class="btn-form">
+      <button type="submit">Save</button>
+      <a href="/restaurants">Back</a>
+    </div>
+</form>
+
+ </div>
