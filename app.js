@@ -1,4 +1,7 @@
 const express = require('express')
+const flash = require('connect-flash')
+
+const session = require('express-session')
 const app = express()
 const { engine } = require('express-handlebars')
 const methodOverride = require('method-override')
@@ -25,6 +28,18 @@ app.set('views', './views')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+app.use(session({
+  secret: 'oanda',
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(flash())
+
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success')
+  res.locals.error_msg = req.flash('error')
+  next()
+})
 
 // 根目錄，重新導向至首頁
 app.get('/', (req, res) => {
@@ -49,12 +64,13 @@ app.get('/restaurants', (req, res) => {
       'phone',
       'google_map',
       'rating',
-      'description'
+      'description',
+      'isComplete'
     ],
     raw: true
   })
     .then((restaurants) => {
-      res.render('index', { restaurants })
+      res.render('index', { restaurants, message: req.flash('sucess') })
     })
     .catch((err) => {
       console.log(err)
@@ -136,9 +152,13 @@ app.post('/restaurants', (req, res) => {
     phone,
     google_map,
     rating,
-    description
+    description,
+    isComplete: true
   })
-    .then(() => res.redirect('/restaurants'))
+    .then(() => {
+      req.flash('success', '新增成功')
+      return res.redirect('/restaurants')
+    })
     .catch((err) => console.log(err))
 })
 
@@ -179,11 +199,15 @@ app.put('/restaurants/:id', (req, res) => {
       phone: body.phoneEdit,
       google_map: body.mapEdit,
       rating: body.ratingEdit,
-      description: body.descriptionEdit
+      description: body.descriptionEdit,
+      isComplete: true
     },
     { where: { id } }
   )
-    .then(() => res.redirect(`/restaurants/${id}`))
+    .then(() => {
+      req.flash('success', '修改成功')
+      return res.redirect(`/restaurants/${id}`)
+    })
     .catch((err) => console.log(err))
 })
 
@@ -191,8 +215,14 @@ app.put('/restaurants/:id', (req, res) => {
 app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.destroy({ where: { id } })
-    .then(() => res.redirect('/restaurants'))
-    .catch((err) => console.log(err))
+    .then(() => {
+      req.flash('success', '刪除成功')
+      return res.redirect('/restaurants')
+    })
+    .catch((err) => {
+      req.flash('error', '刪除失敗')
+      console.log(err)
+    })
 })
 
 app.listen(port, () => {
