@@ -53,6 +53,11 @@ module.exports = (sequelize, DataTypes) => {
       description: {
         type: DataTypes.TEXT,
         allowNull: false
+      },
+      isComplete: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
       }
     },
     {
