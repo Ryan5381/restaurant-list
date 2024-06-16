@@ -1,3 +1,5 @@
+"use strict"
+
 const express = require('express')
 const flash = require('connect-flash')
 
@@ -48,33 +50,37 @@ app.get('/', (req, res) => {
 
 // 顯示新增餐廳的頁面(不做修改)
 app.get('/restaurants/new', (req, res) => {
-  res.render('new')
+  res.render('new', { error:req.flash('error')})
+  // { error:req.flash('error')} 顯示新增錯誤的訊息
 })
 
 // 顯示餐廳全部清單頁面
 app.get('/restaurants', (req, res) => {
-  return Restaurant.findAll({
-    attributes: [
-      'id',
-      'name',
-      'name_en',
-      'category',
-      'image',
-      'location',
-      'phone',
-      'google_map',
-      'rating',
-      'description',
-      'isComplete'
-    ],
-    raw: true
-  })
-    .then((restaurants) => {
+  try {
+    return Restaurant.findAll({
+      attributes: [
+        'id',
+        'name',
+        'name_en',
+        'category',
+        'image',
+        'location',
+        'phone',
+        'google_map',
+        'rating',
+        'description',
+        'isComplete'
+      ],
+      raw: true
+    }).then((restaurants) => {
       res.render('index', { restaurants, message: req.flash('sucess') })
-    })
-    .catch((err) => {
+    }).catch((err) => {
       console.log(err)
     })
+  }
+  catch (err) {
+    console.log(err)
+  }
 })
 
 // 顯示搜尋餐廳的頁面
@@ -131,35 +137,46 @@ app.get('/restaurants/:id', (req, res) => {
 
 // 新增餐廳(會修改原本的restaurants頁面，使用 POST)
 app.post('/restaurants', (req, res) => {
-  const {
-    name,
-    name_en,
-    category,
-    image,
-    location,
-    phone,
-    google_map,
-    rating,
-    description
-  } = req.body
+  try {
+    const {
+      name,
+      name_en,
+      category,
+      image,
+      location,
+      phone,
+      google_map,
+      rating,
+      description
+    } = req.body
 
-  return Restaurant.create({
-    name,
-    name_en,
-    category,
-    image,
-    location,
-    phone,
-    google_map,
-    rating,
-    description,
-    isComplete: true
-  })
-    .then(() => {
-      req.flash('success', '新增成功')
-      return res.redirect('/restaurants')
+    return Restaurant.create({
+      name,
+      name_en,
+      category,
+      image,
+      location,
+      phone,
+      google_map,
+      rating,
+      description,
+      isComplete: true
     })
-    .catch((err) => console.log(err))
+      .then(() => {
+        req.flash('success', '新增成功')
+        return res.redirect('/restaurants')
+      })
+      .catch((err) => {
+        console.log(err)
+        req.flash('error', '新增失敗')
+        return res.redirect('back')
+      })
+  }
+  catch (err) {
+    console.log(err)
+    req.flash('error', '新增失敗')
+    return res.redirect('back')
+  }
 })
 
 // 顯示編輯餐廳頁面(不做修改)
