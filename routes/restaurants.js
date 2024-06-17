@@ -6,7 +6,7 @@ const Restaurant = db.Restaurant
 
 // 顯示新增餐廳的頁面(不做修改)
 router.get('/new', (req, res) => {
-  res.render('new', { error: req.flash('error') })
+  res.render('new')
   // { error:req.flash('error')} 顯示新增錯誤的訊息
 })
 
@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
       ],
       raw: true
     }).then((restaurants) => {
-      res.render('index', { restaurants, message: req.flash('success') })
+      res.render('index', { restaurants })
     }).catch((err) => {
       console.log(err)
     })
@@ -93,46 +93,38 @@ router.get('/:id', (req, res) => {
 
 // 新增餐廳(會修改原本的restaurants頁面，使用 POST)
 router.post('/', (req, res) => {
-  try {
-    const {
-      name,
-      name_en,
-      category,
-      image,
-      location,
-      phone,
-      google_map,
-      rating,
-      description
-    } = req.body
+  const {
+    name,
+    name_en,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description
+  } = req.body
 
-    return Restaurant.create({
-      name,
-      name_en,
-      category,
-      image,
-      location,
-      phone,
-      google_map,
-      rating,
-      description,
-      isComplete: true
+  return Restaurant.create({
+    name,
+    name_en,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description,
+    isComplete: true
+  })
+    .then(() => {
+      req.flash('success', '新增成功')
+      return res.redirect('/restaurants')
     })
-      .then(() => {
-        req.flash('success', '新增成功')
-        return res.redirect('/restaurants')
-      })
-      .catch((err) => {
-        console.log(err)
-        req.flash('error', '新增失敗')
-        return res.redirect('back')
-      })
-  }
-  catch (err) {
-    console.log(err)
-    req.flash('error', '新增失敗')
-    return res.redirect('back')
-  }
+    .catch((error) => {
+      error.errorMseeage = '新增失敗'
+      next(error)
+    })
 })
 
 // 顯示編輯餐廳頁面(不做修改)

@@ -9,7 +9,8 @@ const { engine } = require('express-handlebars')
 const methodOverride = require('method-override')
 const path = require('path')
 const router = require('./routes')
-
+const messageHandler = require('./middlewares/message-handler')
+const errorHandler = require('./middlewares/error-handler')
 const port = 3000
 
 app.engine(
@@ -35,13 +36,11 @@ app.use(session({
 }))
 app.use(flash())
 
-app.use((req, res, next) => {
-  res.locals.success_msg = req.flash('success')
-  res.locals.error_msg = req.flash('error')
-  next()
-})
+app.use(messageHandler)
 
 app.use(router)
+
+app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(`server is running at http://localhost:${port}`)
