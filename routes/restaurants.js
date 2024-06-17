@@ -11,32 +11,34 @@ router.get('/new', (req, res) => {
 })
 
 // 顯示餐廳全部清單頁面
-router.get('/', (req, res) => {
-  try {
-    return Restaurant.findAll({
-      attributes: [
-        'id',
-        'name',
-        'name_en',
-        'category',
-        'image',
-        'location',
-        'phone',
-        'google_map',
-        'rating',
-        'description',
-        'isComplete'
-      ],
-      raw: true
-    }).then((restaurants) => {
-      res.render('index', { restaurants })
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
-  catch (err) {
-    console.log(err)
-  }
+router.get('/', (req, res, next) => {
+  const page = parseInt(req.query.page) || 1
+  const limit = 10
+  return Restaurant.findAll({
+    attributes: [
+      'id',
+      'name',
+      'name_en',
+      'category',
+      'image',
+      'location',
+      'phone',
+      'google_map',
+      'rating',
+      'description',
+      'isComplete'
+    ],
+    raw: true
+  }).then((restaurants) => {
+    res.render('index', {
+      restaurants: restaurants.slice((page - 1) * limit, page * limit),
+      prev: page > 1 ? page - 1 : page,
+      next: page + 1,
+      page })
+  }).catch((error) => {
+    error.errorMseeage = '資料取得失敗'
+    next(error)
+  })
 })
 
 // 顯示搜尋餐廳的頁面

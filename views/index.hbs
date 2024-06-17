@@ -66,3 +66,15 @@
 
 {{!-- 在 {{#each restaurants}} 中，each 幫助器迴圈遍歷 restaurants 數組，並且每次迴圈內部的上下文都是數組中的一個元素。這樣，你可以直接使用
 {{name}}、{{category}}、{{rating}} 等來訪問元素的屬性，而不需透過this或restaurant訪問 --}}
+
+<div class="pagination" style="display: flex; justify-content: center;">
+  <form action="/restaurants" method="GET" style="margin: 1rem">
+  <input type="hidden" name="page" value="{{prev}}">
+  <button type="submit">prev</button>
+  </form>
+  <form action="/restaurants" method="GET" style="margin: 1rem">
+    <input type="hidden" name="page" value="{{next}}">
+    <button type="submit">next</button>
+  </form>
+  <span style="margin: 1rem">page: {{page}}</span>
+</div>
