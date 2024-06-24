@@ -1,0 +1,15 @@
+{{#if register_success_msg}}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <i class="fa-solid fa-check fa-xl" style="color: #265ec0; margin-right:0.5rem"></i>
+  <strong>{{register_success_msg}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
+
+{{#if register_error_msg}}
+  <div class="alert alert-danger alert-dismissible">
+    <i class="fa-solid fa-triangle-exclamation fa-xl" style="color: #cea81c; margin-right:0.5rem"></i>
+    <strong>{{register_error_msg}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{{/if}}

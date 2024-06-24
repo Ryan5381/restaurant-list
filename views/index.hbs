@@ -2,6 +2,7 @@
 
 {{! <button class="btn">CREATE</button> }}
 <a href="/restaurants/new" class="create">CREATE</a>
+<a href="/users/register" class="register">Sign in</a>
 
 {{! search bar }}
 <form action="/restaurants/search" method="get">
@@ -72,9 +73,10 @@
   <input type="hidden" name="page" value="{{prev}}">
   <button type="submit">prev</button>
   </form>
+  <span style="margin: 1rem">page: {{page}}</span>
   <form action="/restaurants" method="GET" style="margin: 1rem">
     <input type="hidden" name="page" value="{{next}}">
     <button type="submit">next</button>
   </form>
-  <span style="margin: 1rem">page: {{page}}</span>
+  
 </div>

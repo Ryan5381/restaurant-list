@@ -67,7 +67,6 @@ router.get('/search', (req, res) => {
           return false
         })
       )
-      console.log(matchedRestaurants) // 調試輸出
       res.render('search', { restaurants: matchedRestaurants, keyword })
     })
     .catch((err) => console.log(err))

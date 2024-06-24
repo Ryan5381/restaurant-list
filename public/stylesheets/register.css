@@ -1,0 +1,23 @@
+.form-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+label {
+  margin-right: 2rem;
+}
+
+.button{
+  display: flex;
+  justify-content: center;
+}
+
+
+/* 屏幕大於576px時套用 */
+@media screen and (min-width: 576px) {
+  .check-password{
+    display: flex;
+    align-items: center;
+  }
+}

@@ -25,6 +25,23 @@ header {
 
 .create {
   position: absolute;
+  right: 120px;
+  top: 5px;
+  padding: 0.3rem;
+  border: 0.13rem solid #2cbee2;
+  border-radius: 10px;
+  color: black;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+
+.create:hover {
+  color: #ffffff;
+  background-color: #2cbee2;
+}
+
+.register {
+  position: absolute;
   right: 15px;
   top: 5px;
   padding: 0.3rem;
@@ -33,6 +50,11 @@ header {
   color: black;
   font-size: 1.3rem;
   text-decoration: none;
+}
+
+.register:hover {
+  color: #ffffff;
+  background-color: #2cbee2;
 }
 
 .form-dev {
@@ -122,10 +144,7 @@ button {
   width: 300px;
 }
 
-.create:hover {
-  color: #ffffff;
-  background-color: #2cbee2;
-}
+
 
 .btn-link {
   background: none;
@@ -191,17 +210,6 @@ button {
 .btn-form-edit {
   display: flex;
   margin-top: 3rem;
-  margin-bottom: 2rem;
-  a {
-    width: 75px;
-    height: 44px;
-    line-height: 44px;
-    border-radius: 10%;
-    text-align: center;
-    text-decoration: none;
-    background-color: red;
-    color: #ffffff;
-  }
 }
 
 .btn-major {
